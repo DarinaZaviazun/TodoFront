@@ -14,10 +14,14 @@ public class UserController {
     private UserDAO userDAO;
     private PasswordEncoder passwordEncoder;
 
+    @PostMapping("/save")
+    public void save(@RequestBody User user){
+        System.out.println("TUT1");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    }
+
     @PostMapping("/auth")
-    public void login(@RequestBody Object o){
-        System.out.println(o);
-        System.out.println("OOOOOOO");
-      // user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void login(){
+        System.out.println("TUT2");
     }
 }

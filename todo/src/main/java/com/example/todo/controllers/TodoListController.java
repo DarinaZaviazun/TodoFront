@@ -3,6 +3,7 @@ package com.example.todo.controllers;
 import com.example.todo.dao.TodoListDAO;
 import com.example.todo.models.TodoList;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -41,12 +42,6 @@ public class TodoListController {
                            @RequestBody String title){
         TodoList one = todoListDAO.getOne(id);
         one.setTitle(title);
-        one.setUpdatedAt(LocalDateTime.now());
-        todoListDAO.save(one);
-    }
-
-    public void updateListTime(int id) {
-        TodoList one = todoListDAO.getOne(id);
         one.setUpdatedAt(LocalDateTime.now());
         todoListDAO.save(one);
     }

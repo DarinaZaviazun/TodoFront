@@ -23,7 +23,6 @@ public class AllRequestsFilter extends GenericFilter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         Authentication authentication = null;
         HttpServletRequest servletRequest = (HttpServletRequest) request;
-        //HttpServletResponse servletResponse = (HttpServletResponse) response;
         String authorizationToken = servletRequest.getHeader("Authorization");
         if (authorizationToken != null && authorizationToken.startsWith("Bearer ")){
             String token = authorizationToken.replace("Bearer ", "");
@@ -37,11 +36,9 @@ public class AllRequestsFilter extends GenericFilter {
 
             if (user != null) {
                 authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
-                System.out.println(authentication);
             }
-            else System.out.println("tututututut");
-
         }
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }

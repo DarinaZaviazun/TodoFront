@@ -38,6 +38,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(authenticate + " !!!!!!!!!!!");
         return authenticate;
     }
 
